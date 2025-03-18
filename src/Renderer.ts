@@ -241,7 +241,6 @@ export const Renderer = Reconciler({
   afterActiveInstanceBlur: () => {},
   detachDeletedInstance: () => {},
   clearContainer: () => {},
-
   scheduleTimeout: setTimeout,
   cancelTimeout: clearTimeout,
   noTimeout: -1,
