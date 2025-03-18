@@ -35,9 +35,12 @@ export const Canvas = forwardRef<CanvasRef, CanvasProps>(function Canvas(
 ) {
   const [canvas, setCanvas] = useState<CanvasRef>(null);
   const canvasRef = useRef<CanvasRef>(null);
+  // paper scope
   const scopeRef = useRef<ScopeRef>(scope);
   const fiberRef = useRef<FiberRef>(null);
 
+
+  // ref转发 返回 canvasRef
   useImperativeHandle<CanvasRef, CanvasRef>(
     forwardedRef,
     () => canvasRef.current
@@ -54,7 +57,8 @@ export const Canvas = forwardRef<CanvasRef, CanvasProps>(function Canvas(
         ...settings,
         insertItems: false,
       });
-
+      
+      // 装载canvas
       scopeRef.current.setup(canvas);
 
       fiberRef.current = Renderer.createContainer(

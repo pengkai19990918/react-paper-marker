@@ -135,7 +135,14 @@ const getSymbolDefinition = (scope, { id, name, svg }) => {
     // return created definition
     return definition;
 };
+// 这是一个用于创建自定义 React 渲染器的实验包。
 exports.Renderer = (0, react_reconciler_1.default)({
+    /**
+     * @description 此方法应返回一个新创建的节点。例如，DOM 渲染器将调用document.createElement(type)此处，然后设置props.
+     * @param type - 要创建的节点的类型。
+     * @param instanceProps - 用于创建节点的属性。
+     * @param scope - 别名scope 用于创建节点的根容器。
+     */
     createInstance: (type, instanceProps, scope) => {
         const { children } = instanceProps, other = __rest(instanceProps, ["children"]);
         const props = Object.assign(Object.assign({}, other), { project: scope.project });

@@ -43,8 +43,10 @@ exports.Canvas = (0, react_1.forwardRef)(function Canvas(_a, forwardedRef) {
     var { children, width, height, settings, scope, onScopeReady } = _a, props = __rest(_a, ["children", "width", "height", "settings", "scope", "onScopeReady"]);
     const [canvas, setCanvas] = (0, react_1.useState)(null);
     const canvasRef = (0, react_1.useRef)(null);
+    // paper scope
     const scopeRef = (0, react_1.useRef)(scope);
     const fiberRef = (0, react_1.useRef)(null);
+    // ref转发 返回 canvasRef
     (0, react_1.useImperativeHandle)(forwardedRef, () => canvasRef.current);
     // create
     (0, react_1.useEffect)(() => {
@@ -53,6 +55,7 @@ exports.Canvas = (0, react_1.forwardRef)(function Canvas(_a, forwardedRef) {
                 scopeRef.current = new paper_core_1.PaperScope();
             }
             Object.assign(scopeRef.current.settings, Object.assign(Object.assign({}, settings), { insertItems: false }));
+            // 装载canvas
             scopeRef.current.setup(canvas);
             fiberRef.current = Renderer_1.Renderer.createContainer(scopeRef.current, constants_1.ConcurrentRoot, null, false, null, '', console.error, null);
             Renderer_1.Renderer.updateContainer(null, fiberRef.current, null, () => null);
